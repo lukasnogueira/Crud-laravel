@@ -11,8 +11,9 @@
         <tr>
             <td>{{$user ->name}}</td>
             <td>{{$user ->email}}</td>
+            <td>
             <a href="{{route('users.edit',['user' => $user->id])}}">Editar</a>
-            <a href="{{route('users.show',['user' => $user->id])}}">show</a>
+            <a href="{{route('users.show',['user' => $user->id])}}">Perfil</a>
         </tr>
         @endforeach
     </table>

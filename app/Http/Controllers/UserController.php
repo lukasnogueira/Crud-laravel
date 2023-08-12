@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Symfony\Component\VarDumper\VarDumper;
 
 class UserController extends Controller
 {
@@ -22,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->user->all();
-        return view('users',['users' => $users]);
+        return view('users', ['users' => $users]);
     }
 
     /**
@@ -38,17 +37,17 @@ class UserController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $data= $request ->all();
-        $user = $user -> create($data);
+        $data = $request->all();
+        $user = $user->create($data);
         return redirect()->route('users.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show (User $user)
+    public function show(User $user)
     {
-        return view('user_show',['user'=>$user]);
+        return view('user_show', ['user' => $user]);
     }
 
     /**
@@ -57,7 +56,7 @@ class UserController extends Controller
     public function edit(user $user)
     {
         dd($user);
-        return view('user_edit',['user'=>$user]);
+        return view('user_edit', ['user' => $user]);
     }
 
     /**
@@ -65,13 +64,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $updated = $this->user->where('id',$id)->update($request->except(['_token','_method']));
+        $updated = $this->user->where('id', $id)->update($request->except(['_token', '_method']));
 
-        if($updated){
+        if ($updated) {
             return redirect()->route('users.index');
         }
-        return redirect()->back()->with('message','error');
-        
+        return redirect()->back()->with('message', 'error');
     }
 
     /**
@@ -79,9 +77,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
-        $this->user->where('id',$id)->delete();
-        
+        $this->user->where('id', $id)->delete();
+
         return redirect()->route('users.index');
     }
 }

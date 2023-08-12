@@ -3,10 +3,10 @@
 @section('content')
 <h2>Detalhes do usuario</h2>
 
-    <form action="{{route('users.destroy')}}" method="POST">
+    <form action="{{route('users.destroy ',['user' => $user->id])}}" method="POST">
         @csrf
         <input type="hidden" name="_method" value="DELETE">
-        <ul>            
+        <ul>
             <li>{{$user->name}}</li>
             <li>{{$user->email}}</li>
             <li>{{$user->password}}</li>
